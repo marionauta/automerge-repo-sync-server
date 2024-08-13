@@ -1,37 +1,33 @@
 {
-  "name": "@automerge/automerge-repo-sync-server",
+  "name": "@marionauta/automerge-repo-sync-server",
   "version": "0.2.8",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node ./src/index.js",
-    "test": "mocha --exit",
+    "build": "tsc",
+    "start": "node ./dist/index.js",
     "prettier": "prettier -c ."
   },
   "files": [
     "src/index.js",
     "src/server.js"
   ],
-  "bin": "./src/index.js",
+  "bin": "./dist/index.js",
   "dependencies": {
-    "@automerge/automerge": "^2.2.4",
-    "@automerge/automerge-repo": "^1.2.0",
-    "@automerge/automerge-repo-network-websocket": "^1.2.0",
-    "@automerge/automerge-repo-storage-nodefs": "^1.2.0",
-    "express": "^4.18.1",
-    "glob": "10.3.10",
-    "ws": "^8.7.0"
+    "@automerge/automerge": "^2.2.8",
+    "@automerge/automerge-repo": "^1.2.1",
+    "@automerge/automerge-repo-network-websocket": "^1.2.1",
+    "better-sqlite3": "^11.1.2",
+    "express": "^4.19.2",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17",
-    "mocha": "^10.2.0",
-    "prettier": "^3.0.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.7.4"
-  },
-  "prettier": {
-    "semi": false
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/express": "^4.17.21",
+    "@types/ws": "^8.5.12",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
   },
   "publishConfig": {
     "access": "public"

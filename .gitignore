@@ -1,4 +1,10 @@
 /node_modules/
 /*.amrg
+/dist
 
 automerge-repo-data
+documents.db
+documents.db-shm
+documents.db-wal
+
+fly.toml
