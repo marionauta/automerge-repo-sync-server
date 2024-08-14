@@ -4,7 +4,7 @@ import { WebSocketServer } from "ws";
 import { type PeerId, Repo, type RepoConfig } from "@automerge/automerge-repo";
 import { NodeWSServerAdapter } from "@automerge/automerge-repo-network-websocket";
 import Database from "better-sqlite3";
-import { BetterSqlite3StorageAdapter } from "./better-sqlite3-storage-adapter.js";
+import { BetterSqlite3StorageAdapter } from "@marionauta/automerge-repo-better-sqlite3";
 
 export class Server {
   #socket: WebSocketServer;
@@ -20,7 +20,7 @@ export class Server {
   constructor() {
     const DATABASE = process.env.DATABASE ?? "documents.db";
     const db = new Database(DATABASE);
-    db.pragma("journal_mode = WAL");
+    // db.pragma("journal_mode = WAL");
 
     this.#socket = new WebSocketServer({ noServer: true });
 

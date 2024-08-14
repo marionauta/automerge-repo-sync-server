@@ -18,6 +18,7 @@
     "@automerge/automerge": "^2.2.8",
     "@automerge/automerge-repo": "^1.2.1",
     "@automerge/automerge-repo-network-websocket": "^1.2.1",
+    "@marionauta/automerge-repo-better-sqlite3": "npm:@jsr/marionauta__automerge-repo-better-sqlite3",
     "better-sqlite3": "^11.1.2",
     "express": "^4.19.2",
     "ws": "^8.18.0"
