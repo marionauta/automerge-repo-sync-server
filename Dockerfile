@@ -1,20 +1,20 @@
 # syntax=docker/dockerfile:1.4
-FROM node:lts-slim AS development
+FROM imbios/bun-node:1.1.22-20-alpine AS development
 
 WORKDIR /usr/src/app
 
 COPY package.json ./package.json
-RUN yarn install
+RUN bun install --frozen-lockfile
 
 COPY . .
-RUN yarn build
+RUN bun run build
 
 EXPOSE 3030
 ENV NODE_ENV=production
-CMD [ "node", "./dist/index.js" ]
+CMD [ "bun", "start" ]
 
 FROM development as dev-envs
 
 HEALTHCHECK CMD curl --fail http://localhost:3030 || exit 1
 
-CMD [ "node", "./dist/index.js" ]
+CMD [ "bun", "start" ]
