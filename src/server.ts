@@ -3,8 +3,7 @@ import express from "express";
 import { WebSocketServer } from "ws";
 import { type PeerId, Repo, type RepoConfig } from "@automerge/automerge-repo";
 import { NodeWSServerAdapter } from "@automerge/automerge-repo-network-websocket";
-import Database from "better-sqlite3";
-import { BetterSqlite3StorageAdapter } from "@marionauta/automerge-repo-better-sqlite3";
+import { BunSqliteStorageAdapter } from "automerge-repo-storage-bun-sqlite";
 
 export class Server {
   #socket: WebSocketServer;
@@ -18,9 +17,7 @@ export class Server {
   #repo: Repo;
 
   constructor() {
-    const DATABASE = process.env.DATABASE ?? "documents.db";
-    const db = new Database(DATABASE);
-    // db.pragma("journal_mode = WAL");
+    const DATABASE = process.env.DATABASE ?? ":memory:";
 
     this.#socket = new WebSocketServer({ noServer: true });
 
@@ -35,7 +32,7 @@ export class Server {
       peerId,
       // @ts-ignore deal with this later
       network: [new NodeWSServerAdapter(this.#socket)],
-      storage: new BetterSqlite3StorageAdapter(db),
+      storage: new BunSqliteStorageAdapter(DATABASE),
       /** @ts-ignore @type {(import("@automerge/automerge-repo").PeerId)}  */
       // Since this is a server, we don't share generously — meaning we only sync documents they already
       // know about and can ask for by ID.
