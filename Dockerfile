@@ -1,19 +1,16 @@
 # syntax=docker/dockerfile:1.4
-FROM imbios/bun-node:1.1.22-20-alpine AS development
+FROM oven/bun:1.1.24-alpine
+
+RUN apk add --no-cache libstdc++
 
 WORKDIR /usr/src/app
 
-COPY package.json ./package.json
+COPY . .
 RUN bun install --frozen-lockfile
 
-COPY . .
+ENV NODE_ENV=production
+RUN bun build --compile src/index.ts --outfile sync-server
 
 EXPOSE 3030
-ENV NODE_ENV=production
-CMD [ "bun", "start" ]
-
-FROM development as dev-envs
-
+CMD [ "./sync-server" ]
 HEALTHCHECK CMD curl --fail http://localhost:3030 || exit 1
-
-CMD [ "bun", "start" ]
