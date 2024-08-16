@@ -9,7 +9,7 @@ COPY . .
 RUN bun install --frozen-lockfile
 
 ENV NODE_ENV=production
-RUN bun build --compile src/index.ts --outfile sync-server
+RUN bun compile
 
 EXPOSE 3030
 CMD [ "./sync-server" ]

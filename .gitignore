@@ -6,5 +6,6 @@ automerge-repo-data
 documents.db
 documents.db-shm
 documents.db-wal
+sync-server
 
 fly.toml

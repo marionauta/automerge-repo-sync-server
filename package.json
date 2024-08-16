@@ -1,12 +1,12 @@
 {
   "name": "@marionauta/automerge-repo-sync-server",
   "version": "0.2.8",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "bun ./src/index.ts"
+    "compile": "bun build --compile ./src/index.ts --outfile sync-server",
+    "start": "bun --watch ./src/index.ts"
   },
   "dependencies": {
     "@automerge/automerge-repo": "^1.2.1",
