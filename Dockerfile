@@ -7,7 +7,6 @@ COPY package.json ./package.json
 RUN bun install --frozen-lockfile
 
 COPY . .
-RUN bun run build
 
 EXPOSE 3030
 ENV NODE_ENV=production

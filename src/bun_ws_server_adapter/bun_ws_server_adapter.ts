@@ -1,11 +1,11 @@
 import {
-  Message,
+  type Message,
   NetworkAdapter,
-  PeerId,
-  PeerMetadata,
+  type PeerId,
+  type PeerMetadata,
 } from "@automerge/automerge-repo";
-import { ServerWebSocket, WebSocketHandler } from "bun";
-import {
+import type { ServerWebSocket, WebSocketHandler } from "bun";
+import type {
   FromClientMessage,
   ProtocolVersion,
 } from "@automerge/automerge-repo-network-websocket";
@@ -13,7 +13,7 @@ import { ProtocolV1 } from "@automerge/automerge-repo-network-websocket/dist/pro
 import { toArrayBuffer } from "@automerge/automerge-repo-network-websocket/dist/toArrayBuffer";
 import { decode, encode } from "@automerge/automerge-repo/helpers/cbor.js";
 import {
-  FromServerMessage,
+  type FromServerMessage,
   isJoinMessage,
   isLeaveMessage,
 } from "@automerge/automerge-repo-network-websocket/dist/messages";
