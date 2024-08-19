@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@automerge/automerge-repo": "^1.2.1",
-    "@automerge/automerge-repo-network-websocket": "^1.2.1",
+    "automerge-repo-network-websocket-bun": "^0.1.0",
     "automerge-repo-storage-bun-sqlite": "^0.1.2"
   },
   "devDependencies": {

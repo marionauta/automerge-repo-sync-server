@@ -1,6 +1,6 @@
 import os from "os";
 import { type PeerId, Repo, type RepoConfig } from "@automerge/automerge-repo";
-import { BunWSServerAdapter } from "./bun_ws_server_adapter";
+import { BunWSServerAdapter } from "automerge-repo-network-websocket-bun";
 import { BunSqliteStorageAdapter } from "automerge-repo-storage-bun-sqlite";
 
 export class Server {
