@@ -1,5 +1,4 @@
 import {
-  type Message,
   NetworkAdapter,
   type PeerId,
   type PeerMetadata,
@@ -126,7 +125,7 @@ export class BunWSServerAdapter
       const socket = this.sockets[senderId];
       /* c8 ignore next */
       if (!socket) return;
-      this.#terminate(socket as WebSocketWithIsAlive);
+      this.#terminate(socket);
     } else {
       this.emit("message", message);
     }

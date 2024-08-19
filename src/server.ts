@@ -5,8 +5,8 @@ import { BunSqliteStorageAdapter } from "automerge-repo-storage-bun-sqlite";
 
 export class Server {
   constructor() {
-    const DATABASE = process.env.DATABASE ?? ":memory:";
-    const PORT = parseInt(process.env.PORT ?? "3030", 10);
+    const DATABASE = process.env["DATABASE"] ?? ":memory:";
+    const PORT = parseInt(process.env["PORT"] ?? "3030", 10);
 
     const hostname = os.hostname();
     const peerId = `sync-server-${hostname}` as PeerId;
@@ -37,6 +37,8 @@ export class Server {
       },
       websocket: socketAdapter,
     });
-    console.log(`Listening on ${server.url}`);
+    console.log(
+      `Listening on ${server.url} with PeerId ${repo.networkSubsystem.peerId}`,
+    );
   }
 }
