@@ -1,3 +1,10 @@
+# v0.3.0
+
+- Refactor to use Bun instead of Node.
+- Use a sqlite database instead of the file system as storage.
+- Introduce `DATABASE` and `HOSTNAME` environment variables.
+- Remove `DATA_DIR` environment variable.
+
 # v0.2.3
 
 - Correctly pass DATA_DIR to nodefs storage plugin
