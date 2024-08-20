@@ -6,6 +6,7 @@ import { BunSqliteStorageAdapter } from "automerge-repo-storage-bun-sqlite";
 export class Server {
   constructor() {
     const DATABASE = process.env["DATABASE"] ?? ":memory:";
+    const HOSTNAME = process.env["HOSTNAME"];
     const PORT = parseInt(process.env["PORT"] ?? "3030", 10);
 
     const hostname = os.hostname();
@@ -24,7 +25,7 @@ export class Server {
     const repo = new Repo(config);
 
     const server = Bun.serve({
-      hostname: "0.0.0.0",
+      hostname: HOSTNAME,
       port: PORT,
       fetch(request, server) {
         if (
