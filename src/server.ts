@@ -7,6 +7,8 @@ export class Server {
   constructor() {
     const DATABASE = process.env["DATABASE"] ?? ":memory:";
     const HOSTNAME = process.env["HOSTNAME"];
+    const ALLOWED_ORIGINS: string[] =
+      process.env["ALLOWED_ORIGINS"]?.split("||") ?? [];
     const PORT = parseInt(process.env["PORT"] ?? "3030", 10);
 
     const hostname = os.hostname();
@@ -28,7 +30,11 @@ export class Server {
       hostname: HOSTNAME,
       port: PORT,
       fetch(request, server) {
+        const origin = request.headers.get("Origin")?.split("//").at(-1);
         if (
+          ALLOWED_ORIGINS.length > 0 &&
+          origin &&
+          ALLOWED_ORIGINS.includes(origin) &&
           request.headers.get("upgrade") === "websocket" &&
           server.upgrade(request)
         ) {
@@ -41,5 +47,6 @@ export class Server {
     console.log(
       `Listening on ${server.url} with PeerId ${repo.networkSubsystem.peerId}`,
     );
+    console.log(`Allowed origins: ${ALLOWED_ORIGINS.join(", ")}.`);
   }
 }
