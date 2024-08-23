@@ -30,23 +30,22 @@ export class Server {
       hostname: HOSTNAME,
       port: PORT,
       fetch(request, server) {
-        const origin = request.headers.get("Origin")?.split("//").at(-1);
-        if (
-          ALLOWED_ORIGINS.length > 0 &&
-          origin &&
-          ALLOWED_ORIGINS.includes(origin) &&
-          request.headers.get("upgrade") === "websocket" &&
-          server.upgrade(request)
-        ) {
-          return;
+        if (request.headers.get("upgrade") === "websocket") {
+          const origin = request.headers.get("origin")?.split("//").at(-1);
+          if (origin && ALLOWED_ORIGINS.includes(origin)) {
+            if (server.upgrade(request)) {
+              return; // upgrade
+            }
+            return new Response(undefined, { status: 500 });
+          }
+          return new Response(undefined, { status: 400 });
         }
         return new Response("Running");
       },
       websocket: socketAdapter,
     });
-    console.log(
-      `Listening on ${server.url} with PeerId ${repo.networkSubsystem.peerId}`,
-    );
+    console.log(`Listening on ${server.url}`);
+    console.log(`PeerId ${repo.networkSubsystem.peerId}`);
     console.log(`Allowed origins: ${ALLOWED_ORIGINS.join(", ")}.`);
   }
 }
